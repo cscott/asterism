@@ -223,6 +223,9 @@ button {  width: auto; overflow: visible; }
  /* Primary Styles
     Author: C. Scott Ananian
  */
+/* EOT format for MS. */
+@font-face { font-family: Harrington; src: url('../fonts/Harngton.eot'); }
+/* TTF for everyone else. */
 @font-face { font-family: Harrington; src: url('../fonts/Harngton.ttf'); }
 
 /* basic layout */
