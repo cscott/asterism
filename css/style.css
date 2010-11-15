@@ -223,6 +223,9 @@ button {  width: auto; overflow: visible; }
  /* Primary Styles
     Author: C. Scott Ananian
  */
+@font-face { font-family: Harrington; src: url('../fonts/Harngton.ttf'); }
+
+/* basic layout */
 #left-side, #right-side {
     width: 250px; height: 100%; position: absolute; top: 0;
     z-index: -1;
@@ -240,12 +243,12 @@ body { min-height: 100%; height: 100%; }
   position: relative; top: 0; left: 0;
   min-height: 100%;
   /* ensure lotte isn't squished */
-  min-width: 660px;
+  min-width: 720px;
   /* work around chrome bug */
   border: 1px solid white;
 }
 #main {
-    margin: 5px 260px 328px 270px;
+    margin: 5px 255px 328px 259px;
     padding: 10px;
     border: 4px solid #e70413;
     background: #fff;
@@ -268,7 +271,8 @@ body { min-height: 100%; height: 100%; }
             box-shadow: inset 5px 5px 25px rgba(0,0,0,.5);
 }
 
-
+/* Stylin' */
+h1 { font-family: Harrington, sans-serif; font-size: 24px; }
 
 
 
