@@ -227,7 +227,7 @@ button {  width: auto; overflow: visible; }
 
 /* basic layout */
 #left-side, #right-side {
-    width: 250px; height: 100%; position: absolute; top: 0;
+    width: 200px; height: 100%; position: absolute; top: 0;
     z-index: -1;
     background-repeat: repeat-y;
 }
@@ -248,7 +248,7 @@ body { min-height: 100%; height: 100%; }
   border: 1px solid white;
 }
 #main {
-    margin: 5px 255px 328px 259px;
+    margin: 5px 205px 328px 209px;
     padding: 10px;
     border: 4px solid #e70413;
     background: #fff;
