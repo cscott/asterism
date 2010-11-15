@@ -233,7 +233,7 @@ button {  width: auto; overflow: visible; }
 }
 #left-side {  background-image: url("../images/photo-booth-left.jpg"); left: 0}
 #right-side { background-image: url("../images/photo-booth-right.jpg"); right: 0;}
-#lotte { width: 50%; position: absolute; left: 25%; bottom: 0; height: 328px; }
+#lotte { width: 50%; position: absolute; left: 25%; bottom: -1px; height: 328px; }
 #lotte div { background-image: url("../images/photo-booth-lotte.png");
          width: 158px; height: 328px; margin: 0px auto;
  }
