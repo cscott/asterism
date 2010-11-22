@@ -283,6 +283,25 @@ button {  width: auto; overflow: visible; }
 #content > div > div:target { display: block; }
 #content > div > #welcome { display: block; }
 
+#tb1, #tb2, #tb3 { position: absolute; top: 0; left: 0;
+    border: 3px solid #e70413;
+    background: #fff;
+    display: none; /* turned on by javascript */
+
+    -webkit-border-radius: 12px;
+       -moz-border-radius: 12px;
+            border-radius: 12px;
+    behavior: url("css/ie-css3.htc"); /* MSIE workaround for border-radius */
+    /* slight shadow */
+    -webkit-box-shadow: 3px 3px 5px rgba(0,0,0,.3);
+       -moz-box-shadow: 3px 3px 5px rgba(0,0,0,.3);
+            box-shadow: 3px 3px 5px rgba(0,0,0,.3);
+}
+#tb1 { width: 17px; height: 17px; /* 23 - 6 */ }
+#tb2 { width: 14px; height: 14px; /* 20 - 6 */ }
+#tb3 { width:  9px; height:  9px; /* 15 - 6 */ }
+
+
 /* Stylin' */
 h1, h2, h3, #menu { font-family: Harrington, sans-serif; color: #0b2b87; }
 #menu a { text-decoration: none; font-size: 18px; }

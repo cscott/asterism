@@ -30,21 +30,22 @@ function page_init($) {
           b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape,
           b2CircleShape = Box2D.Collision.Shapes.b2CircleShape,
           b2DebugDraw = Box2D.Dynamics.b2DebugDraw,
+	  b2RevoluteJointDef = Box2D.Dynamics.Joints.b2RevoluteJointDef,
           b2MouseJointDef =  Box2D.Dynamics.Joints.b2MouseJointDef;
 
     var world = new b2World(new b2Vec2(0, 10),    //gravity
                             true);                //allow sleep
 
-    var fixDef = new b2FixtureDef;
+    var fixDef = new b2FixtureDef();
     fixDef.density = 1.0;
     fixDef.friction = 0.5;
     fixDef.restitution = 0.5;
 
-    var bodyDef = new b2BodyDef;
+    var bodyDef = new b2BodyDef();
 
     //create ground
     bodyDef.type = b2Body.b2_staticBody;
-    fixDef.shape = new b2PolygonShape;
+    fixDef.shape = new b2PolygonShape();
     fixDef.shape.SetAsBox(SCALE*mainWidth/2, 1);
     bodyDef.position.Set(SCALE*mainWidth/2, -1);
     world.CreateBody(bodyDef).CreateFixture(fixDef);
@@ -60,17 +61,58 @@ function page_init($) {
 
     //create some objects
     bodyDef.type = b2Body.b2_dynamicBody;
-    fixDef.shape = new b2PolygonShape;
+    fixDef.shape = new b2PolygonShape();
     fixDef.restitution = 0.6;
     fixDef.shape.SetAsBox(SCALE*contentWidth/2 /* half width */,
                           SCALE*contentHeight/2 /* half height */);
     bodyDef.position.x = SCALE * (contentPos.left + (contentWidth/2));
     bodyDef.position.y = SCALE * (contentPos.top + (contentHeight/2));
-    bodyDef.angle = 1*3.141592654/180;
+    //bodyDef.angle = 1*3.141592654/180;
 
     var balloonInitialPos = bodyDef.position.Copy();
     var balloon = world.CreateBody(bodyDef);
     balloon.CreateFixture(fixDef);
+
+    // tether bubble (tb)
+    var bottom = new b2Vec2(SCALE*(contentPos.left + (contentWidth/2)),
+			    SCALE*(contentPos.top + contentHeight));
+
+    var jointDef = new b2RevoluteJointDef();
+    fixDef.restitution = 0.8;
+    fixDef.friction = 0.2;
+
+    // 1st bubble: 23px, 20px vertical to bubble
+    bottom.y += SCALE*18;
+    fixDef.shape = new b2CircleShape(SCALE*23/2); // radius
+    bodyDef.position.Set(bottom.x, bottom.y);
+    var tb1 = world.CreateBody(bodyDef);
+    tb1.CreateFixture(fixDef);
+    jointDef.Initialize(balloon, tb1, bottom);
+    world.CreateJoint(jointDef);
+
+    // 2nd bubble: 20px, 23px vertical to 1st bubble
+    bottom.y += SCALE*22;
+    fixDef.shape = new b2CircleShape(SCALE*20/2); // radius
+    bodyDef.position.Set(bottom.x, bottom.y);
+    var tb2 = world.CreateBody(bodyDef);
+    tb2.CreateFixture(fixDef);
+    jointDef.Initialize(tb1, tb2, bottom);
+    world.CreateJoint(jointDef);
+
+    // 3rd bubble: 15px, 17px vertical to 2nd bubble
+    bottom.y += SCALE*16;
+    fixDef.shape = new b2CircleShape(SCALE*15/2); // radius
+    bodyDef.position.Set(bottom.x, bottom.y);
+    var tb3 = world.CreateBody(bodyDef);
+    tb3.CreateFixture(fixDef);
+    jointDef.Initialize(tb2, tb3, bottom);
+    world.CreateJoint(jointDef);
+
+    // final position: 9px vertical
+    bottom.y += SCALE*8;
+    jointDef.Initialize(tb3, world.GetGroundBody(), bottom);
+    world.CreateJoint(jointDef);
+
 
     // allow dragging the bubbles
     var mouseVec = new b2Vec2(0,0), lastMouseVec = new b2Vec2(0,0);
@@ -135,17 +177,44 @@ function page_init($) {
         if (mouseJoint) {
             mouseJoint.SetTarget(new b2Vec2(mouseVec.x, mouseVec.y));
         }
-        world.Step(1 / 30, 10, 10);
+        world.Step(1 / 30, 100, 100);
         world.ClearForces();
         // update balloon position
         var p = balloon.GetPosition().Copy();
         p.Subtract(balloonInitialPos);
         content.css({ left: (p.x/SCALE)+'px', top: (p.y/SCALE)+'px' });
         content.css(rot(balloon.GetAngle()));
+
+	// STABILIZE TEXT
+	/*
+	var textelem = $('#content > div > div');
+        textelem.css({ position: 'relative', left: (-p.x/SCALE)+'px', top: (-p.y/SCALE)+'px' });
+	textelem.css(rot(-balloon.GetAngle()));
+	*/
+
+
         // update buoyancy
         var force = new b2Vec2();
         force.Set(0, -11 * balloon.GetMass());
         balloon.ApplyForce(force, balloon.GetPosition());
+
+	// update thought bubbles
+	var e;
+	p = tb1.GetPosition().Copy(); e = $('#tb1');
+	p.Multiply(1/SCALE);
+	p.Subtract(new b2Vec2(e.innerWidth(), e.innerHeight()));
+	e.css({ left: p.x+'px', top: p.y+'px', display: 'block' });
+
+	p = tb2.GetPosition().Copy(); e = $('#tb2');
+	p.Multiply(1/SCALE);
+	p.Subtract(new b2Vec2(e.innerWidth(), e.innerHeight()));
+	e.css({ left: p.x+'px', top: p.y+'px', display: 'block' });
+
+	p = tb3.GetPosition().Copy(); e = $('#tb3');
+	p.Multiply(1/SCALE);
+	p.Subtract(new b2Vec2(e.innerWidth(), e.innerHeight()));
+	e.css({ left: p.x+'px', top: p.y+'px', display: 'block' });
+
     };
     window.setInterval(update, 1000 / 30 /* 30 fps (in ms) */);
 
