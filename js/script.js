@@ -1,6 +1,11 @@
 /* Author: C. Scott Ananian
  */
 
+var physics_noop = function() { };
+var physics_mousemove = physics_noop;
+var physics_mouseenter = physics_noop;
+var physics_mouseleave = physics_noop;
+
 function page_init($) {
     // SCALE FACTOR for box2d
     var SCALE = 1/100.;
@@ -128,17 +133,20 @@ function page_init($) {
     // allow dragging the bubbles
     var mouseVec = new b2Vec2(0,0), lastMouseVec = new b2Vec2(0,0);
     var mouseIn = false, mouseMoved = false, mouseJoint = null;
-    main.mouseenter(function(e) { mouseIn = true; });
-    main.mouseleave(function(e) { mouseIn = false; });
-    main.mousemove(function(e) {
-        var mainOffset = main.offset();
-        if (!mouseMoved) {
-            mouseMoved = true;
-            lastMouseVec = mouseVec.Copy();
-        }
-        mouseVec.Set((e.pageX - mainOffset.left)*SCALE,
-                     (e.pageY - mainOffset.top)*SCALE);
-    });
+    var enableMouseDrag = false; // XXX disable mouse interaction.
+    if (enableMouseDrag) {
+	physics_mouseenter = function(e) { mouseIn = true; };
+	physics_mouseleave = function(e) { mouseIn = false; };
+	physics_mousemove = function(e) {
+	    var mainOffset = main.offset();
+	    if (!mouseMoved) {
+		mouseMoved = true;
+		lastMouseVec = mouseVec.Copy();
+	    }
+	    mouseVec.Set((e.pageX - mainOffset.left)*SCALE,
+			 (e.pageY - mainOffset.top)*SCALE);
+	};
+    }
     function getBodyAtMouse() {
         var aabb = new b2AABB();
         aabb.lowerBound.Set(mouseVec.x - 0.001, mouseVec.y - 0.001);
@@ -168,7 +176,6 @@ function page_init($) {
                 '-o-transform': r };
     }
     function update() {
-	mouseIn=false; // XXX disable mouse drag
         if (mouseJoint && !(mouseMoved && mouseIn)) {
             world.DestroyJoint(mouseJoint);
             mouseJoint = null;
@@ -258,6 +265,9 @@ function page_init($) {
 	    $(window).hashchange( function() {
 		    // stop old physics world
 		    oldsignal.stop = true;
+		    physics_mouseenter = physics_noop;
+		    physics_mouseleave = physics_noop;
+		    physics_mousemove = physics_noop;
 		    // fade in new content
 		    $('#content').hide().fadeIn(800);
 		    // start up new physics world after a short delay (to
@@ -273,5 +283,11 @@ function page_init($) {
 	    else
 	    // Trigger the event (useful on page load).
 		$(window).hashchange();
+
+	    // setup mouse handlers
+	    var main = $('#main');
+	    main.mouseenter(function(e) { physics_mouseenter(e); });
+	    main.mouseleave(function(e) { physics_mouseleave(e); });
+	    main.mousemove(function(e) { physics_mousemove(e); });
 	});
 })(this.jQuery);
