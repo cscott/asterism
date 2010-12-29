@@ -46,15 +46,19 @@ function page_init($) {
     //create ground
     bodyDef.type = b2Body.b2_staticBody;
     fixDef.shape = new b2PolygonShape();
+    // ceiling
     fixDef.shape.SetAsBox(SCALE*mainWidth/2, 1);
     bodyDef.position.Set(SCALE*mainWidth/2, -1);
     world.CreateBody(bodyDef).CreateFixture(fixDef);
-    bodyDef.position.Set(SCALE*mainWidth/2, SCALE*mainHeight + 1);
+    // floor (leave room underneath for bubble to float up from)
+    bodyDef.position.Set(SCALE*mainWidth/2, 2*SCALE*mainHeight + 1);
     world.CreateBody(bodyDef).CreateFixture(fixDef);
 
+    // left wall
     fixDef.shape.SetAsBox(1, SCALE*mainHeight/2);
     bodyDef.position.Set(-1, SCALE*mainHeight/2);
     world.CreateBody(bodyDef).CreateFixture(fixDef);
+    // right wall
     bodyDef.position.Set(SCALE*mainWidth + 1, SCALE*mainHeight/2);
     world.CreateBody(bodyDef).CreateFixture(fixDef);
 
@@ -113,6 +117,13 @@ function page_init($) {
     jointDef.Initialize(tb3, world.GetGroundBody(), bottom);
     world.CreateJoint(jointDef);
 
+
+    // float bubble up from bottom
+    var bp = balloon.GetPosition().Copy();
+    var brot = (Math.random()*4 - 2)*3.14/180;
+    bp.y += SCALE*contentHeight/3;
+    balloon.SetPositionAndAngle(bp, brot);
+    balloon.SetLinearVelocity(new b2Vec2(0,-SCALE*contentHeight));
 
     // allow dragging the bubbles
     var mouseVec = new b2Vec2(0,0), lastMouseVec = new b2Vec2(0,0);
@@ -198,6 +209,8 @@ function page_init($) {
         var force = new b2Vec2();
         force.Set(0, -11 * balloon.GetMass());
         balloon.ApplyForce(force, balloon.GetPosition());
+
+	// XXX APPLY POSITION DAMPING
 
 	// update thought bubbles
 	var e;
