@@ -262,7 +262,7 @@ button {  width: auto; overflow: visible; }
     /* allow this bubble to be animated. */
     position: relative; top: 0; left: 0;
 }
-#content > div { padding: 10px; }
+#content > div { padding: 5px 10px; }
 #menu > span { display: inline-block; }
 #menu > span, #content { padding: 6px 0; /* make room for border + shadow */ }
 #menu > span a { padding: 3px; }
