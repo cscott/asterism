@@ -5,6 +5,10 @@ upload:
 	cd build && ant
 	rsync -avz publish/ cscott.net:web/asterism.us/wedding/
 
+stage:
+	cd build && ant
+	rsync -avz publish/ cscott.net:web/asterism.us/wedding.staged/
+
 upload.git:
 	-$(RM) -rf clean
 	git archive --format=tar --prefix=clean/ HEAD | tar -x
