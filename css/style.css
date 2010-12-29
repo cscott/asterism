@@ -281,7 +281,8 @@ button {  width: auto; overflow: visible; }
 }
 #content > div > div { display: none; }
 #content > div > div:target { display: block; }
-#content > div > #welcome { display: block; }
+/* Display some helpful text if the user doesn't have JS enabled. */
+.no-js #content > div > #noscript { display: block; }
 
 #tb1, #tb2, #tb3 { position: absolute; top: 0; left: 0;
     border: 3px solid #e70413;
