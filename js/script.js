@@ -76,6 +76,8 @@ function page_init($) {
                           SCALE*contentHeight/2 /* half height */);
     bodyDef.position.x = SCALE * (contentPos.left + (contentWidth/2));
     bodyDef.position.y = SCALE * (contentPos.top + (contentHeight/2));
+    bodyDef.linearDamping = 3.5;
+    bodyDef.angularDamping = 5;
     //bodyDef.angle = 1*3.141592654/180;
 
     var balloonInitialPos = bodyDef.position.Copy();
@@ -126,9 +128,9 @@ function page_init($) {
     // float bubble up from bottom
     var bp = balloon.GetPosition().Copy();
     var brot = (Math.random()*4 - 2)*3.14/180;
-    bp.y += SCALE*contentHeight/3;
+    bp.y += SCALE*contentHeight/2;
     balloon.SetPositionAndAngle(bp, brot);
-    balloon.SetLinearVelocity(new b2Vec2(0,-SCALE*contentHeight));
+    balloon.SetLinearVelocity(new b2Vec2(0,-2*SCALE*contentHeight));
 
     // allow dragging the bubbles
     var mouseVec = new b2Vec2(0,0), lastMouseVec = new b2Vec2(0,0);
@@ -215,9 +217,21 @@ function page_init($) {
         // update buoyancy
         var force = new b2Vec2();
         force.Set(0, -11 * balloon.GetMass());
-        balloon.ApplyForce(force, balloon.GetPosition());
 
-	// XXX APPLY POSITION DAMPING
+	// Spring-load to 'rest' position.
+        p = balloon.GetPosition().Copy();
+        p.Subtract(balloonInitialPos);
+	var springConstant = 25;
+	p.Multiply(-1 * springConstant * balloon.GetMass());
+	force.Add(p);
+	//force = p;
+
+	var r = balloon.GetAngle();
+	springConstant = 10;
+	r = -1 * r * springConstant * balloon.GetMass();
+
+	balloon.ApplyForce(force, balloon.GetPosition());
+	balloon.ApplyTorque(r);
 
 	// update thought bubbles
 	var e;
