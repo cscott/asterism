@@ -245,11 +245,12 @@ function page_init($) {
 		window.location.hash = '#welcome';
 	    // use https://developer.mozilla.org/en/DOM/window.onhashchange
 	    // to update physics when we switch pages.
-	    // XXX use relative opacity to fade up
 	    var oldsignal = {};
 	    $(window).hashchange( function() {
 		    // stop old physics world
 		    oldsignal.stop = true;
+		    // fade in new content
+		    $('#content').hide().fadeIn(800);
 		    // start up new physics world after a short delay (to
 		    // allow css relayout to occur)
 		    window.setTimeout(function() {
