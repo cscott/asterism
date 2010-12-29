@@ -252,10 +252,6 @@ function page_init($) {
 // remap jQuery to $
 (function($){
     $(document).ready(function(){
-	    // redirect if no # target
-	    if (window.location.hash=='' ||
-		window.location.hash=='#')
-		window.location.hash = '#welcome';
 	    // use https://developer.mozilla.org/en/DOM/window.onhashchange
 	    // to update physics when we switch pages.
 	    var oldsignal = {};
@@ -270,7 +266,12 @@ function page_init($) {
 			    oldsignal = page_init($);
 			}, 1);
 		});
+	    // redirect if no # target
+	    if (window.location.hash=='' ||
+		window.location.hash=='#')
+		window.location.hash = '#welcome';
+	    else
 	    // Trigger the event (useful on page load).
-	    $(window).hashchange();
+		$(window).hashchange();
 	});
 })(this.jQuery);
