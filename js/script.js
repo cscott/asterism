@@ -220,8 +220,20 @@ function page_init($) {
 	e.css({ left: p.x+'px', top: p.y+'px', display: 'block' });
 
     };
-    window.setInterval(update, 1000 / 30 /* 30 fps (in ms) */);
 
+    var signal = {go:true};
+    (function loop() {
+	// use recursive setTimeout instead of setInterval to be kinder
+	// in case processing delays cause us to miss a frame or two.
+	window.setTimeout(function() {
+		// allow stopping/rebuilding the world on hashchange
+		if (signal.stop) return;
+		update();
+		// recurse
+		loop();
+	    },  1000 / 30 /* 30 fps (in ms) */);
+    })();
+    return signal;
 };
 
 // remap jQuery to $
@@ -231,9 +243,20 @@ function page_init($) {
 	    if (window.location.hash=='' ||
 		window.location.hash=='#')
 		window.location.hash = '#welcome';
-	    // XXX use https://developer.mozilla.org/en/DOM/window.onhashchange
+	    // use https://developer.mozilla.org/en/DOM/window.onhashchange
 	    // to update physics when we switch pages.
-	    // (use relative positioning, fade up opacity as we float up)
-	    page_init($);
+	    // XXX use relative opacity to fade up
+	    var oldsignal = {};
+	    $(window).hashchange( function() {
+		    // stop old physics world
+		    oldsignal.stop = true;
+		    // start up new physics world after a short delay (to
+		    // allow css relayout to occur)
+		    window.setTimeout(function() {
+			    oldsignal = page_init($);
+			}, 1);
+		});
+	    // Trigger the event (useful on page load).
+	    $(window).hashchange();
 	});
 })(this.jQuery);
