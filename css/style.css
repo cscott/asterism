@@ -285,6 +285,10 @@ button {  width: auto; overflow: visible; }
 /* Display some helpful text if the user doesn't have JS enabled. */
 .no-js #content > div > #noscript { display: block; }
 
+/* weirdness to fake out fragment scrolling */
+#menu { z-index: 1; position: relative; }
+#content > div > div { margin-top: -100px; padding-top: 100px; }
+
 #tb1, #tb2, #tb3 { position: absolute; top: 0; left: 0;
     border: 3px solid #e70413;
     background: #fff;
