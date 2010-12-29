@@ -116,7 +116,9 @@ AddType application/x-chrome-extension crx
 #   "access plus 1 week" or so
 
 <IfModule mod_expires.c>
+  <IfModule mod_headers.c>
   Header set Cache-Control "public"
+  </IfModule>
   ExpiresActive on
 
 # Perhaps better to whitelist expires rules? Perhaps.
