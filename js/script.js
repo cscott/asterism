@@ -157,6 +157,7 @@ function page_init($) {
                 '-o-transform': r };
     }
     function update() {
+	mouseIn=false; // XXX disable mouse drag
         if (mouseJoint && !(mouseMoved && mouseIn)) {
             world.DestroyJoint(mouseJoint);
             mouseJoint = null;
@@ -203,16 +204,19 @@ function page_init($) {
 	p = tb1.GetPosition().Copy(); e = $('#tb1');
 	p.Multiply(1/SCALE);
 	p.Subtract(new b2Vec2(e.innerWidth(), e.innerHeight()));
+	p.x += 64; // offset for nice artistic look
 	e.css({ left: p.x+'px', top: p.y+'px', display: 'block' });
 
 	p = tb2.GetPosition().Copy(); e = $('#tb2');
 	p.Multiply(1/SCALE);
 	p.Subtract(new b2Vec2(e.innerWidth(), e.innerHeight()));
+	p.x += 48; // offset for nice artistic look
 	e.css({ left: p.x+'px', top: p.y+'px', display: 'block' });
 
 	p = tb3.GetPosition().Copy(); e = $('#tb3');
 	p.Multiply(1/SCALE);
 	p.Subtract(new b2Vec2(e.innerWidth(), e.innerHeight()));
+	p.x += 30; // offset for nice artistic look
 	e.css({ left: p.x+'px', top: p.y+'px', display: 'block' });
 
     };
