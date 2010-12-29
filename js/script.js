@@ -273,6 +273,7 @@ function page_init($) {
 // remap jQuery to $
 (function($){
     $(document).ready(function(){
+	    $('#pleasewait').hide();
 	    // use https://developer.mozilla.org/en/DOM/window.onhashchange
 	    // to update physics when we switch pages.
 	    var oldsignal = {};

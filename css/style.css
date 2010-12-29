@@ -284,6 +284,8 @@ button {  width: auto; overflow: visible; }
 #content > div > div:target { display: block; }
 /* Display some helpful text if the user doesn't have JS enabled. */
 .no-js #content > div > #noscript { display: block; }
+/* Display 'please wait' text while loading initially. */
+.js #content #pleasewait { display: block; }
 
 /* weirdness to fake out fragment scrolling */
 #menu { z-index: 1; position: relative; }
@@ -316,7 +318,7 @@ h1, h2, h3, #menu { font-family: Harrington, sans-serif; color: #0b2b87; }
 h1 { font-size: 23px; }
 h2 { font-size: 20px; margin: 0.5em 0; }
 p { margin-top: 0.5em; }
-.dingbats { text-align: center; color: #0b2b87; font-size: 20px; }
+.dingbats, #pleasewait { text-align: center; color: #0b2b87; font-size: 20px; }
 
 
 /* --------------------------------------------------------------- */
