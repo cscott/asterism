@@ -311,13 +311,17 @@ button {  width: auto; overflow: visible; }
 
 
 /* Stylin' */
-h1, h2, h3, #menu { font-family: Harrington, sans-serif; color: #0b2b87; }
+h1, #menu { font-family: Harrington, sans-serif; }
+h2, h3 { font-weight: bold; }
+h1, h2, h3, #menu { color: #0b2b87; }
 #menu a { text-decoration: none; font-size: 18px; }
 #menu a:visited, #menu a:link, #menu a { color: #0b2b87; }
 #menu a:hover, #menu a:active, #menu a:target { color: red; }
-h1 { font-size: 23px; }
-h2 { font-size: 20px; margin: 0.5em 0; }
-p { margin-top: 0.5em; }
+#main { font-size: 14px; }
+#main dt {  font-weight: bold; }
+#main h1 { font-size: 23px; }
+#main h2 { font-size: 20px; margin: 0.5em 0; }
+#main p { margin-top: 0.5em; }
 .dingbats, #pleasewait { text-align: center; color: #0b2b87; font-size: 20px; }
 
 
