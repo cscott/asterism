@@ -227,7 +227,7 @@ function page_init($) {
 	//force = p;
 
 	var r = balloon.GetAngle();
-	springConstant = 10;
+	springConstant = 50;
 	r = -1 * r * springConstant * balloon.GetMass();
 
 	balloon.ApplyForce(force, balloon.GetPosition());
