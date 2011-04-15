@@ -4,11 +4,22 @@
 // remap jQuery to $
 (function($){
     $(document).ready(function(){
+	    // set up isotope
+            $('#menu').isotope({
+		itemSelector: '.item',
+		layoutMode : 'fitRows',
+	    });
+
 	    $('#pleasewait').hide();
 	    // use https://developer.mozilla.org/en/DOM/window.onhashchange
 	    // to update physics when we switch pages.
 	    var oldsignal = {};
 	    $(window).hashchange( function() {
+		// filter the top menu based on the hash portion
+		var hash = window.location.hash;
+		var tophash = hash.replace('#','.').replace(/-.*/, '');
+		if (!tophash) tophash="#willnotmatch";
+		$('#menu').isotope({ filter: ".top, "+tophash });
                     /*
 		    // stop old physics world
 		    oldsignal.stop = true;

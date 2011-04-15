@@ -324,6 +324,28 @@ h1, h2, h3, #menu { color: #0b2b87; }
 #main p { margin-top: 0.5em; }
 .dingbats, #pleasewait { text-align: center; color: #0b2b87; font-size: 20px; }
 
+/* Isotope animation using CSS transitions */
+.isotope,
+.isotope .isotope-item {
+  /* change duration value to whatever you like */
+  -webkit-transition-duration: 0.4s;
+     -moz-transition-duration: 0.4s;
+          transition-duration: 0.4s;
+}
+
+.isotope {
+  -webkit-transition-property: height, width;
+     -moz-transition-property: height, width;
+          transition-property: height, width;
+}
+
+/** Isotope filtering ***/
+.isotope .isotope-item {
+  -webkit-transition-property: -webkit-transform, opacity;
+     -moz-transition-property:    -moz-transform, opacity;
+          transition-property:         transform, opacity;
+}
+
 
 /* --------------------------------------------------------------- */
 
