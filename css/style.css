@@ -264,9 +264,9 @@ button {  width: auto; overflow: visible; }
 }
 #content > div { padding: 5px 10px; }
 #menu > span { display: inline-block; }
-#menu > span, #content { padding: 6px 0; /* make room for border + shadow */ }
+#content { padding: 6px 0; /* make room for border + shadow */ }
 #menu > span a { padding: 3px; }
-#menu > span { margin-bottom: 5px; }
+#menu > span { padding: 8px 3px 10px 0px; }
 #menu > span a, #content > div {
     border: 4px solid #e70413;
     background: #fff;
@@ -317,6 +317,7 @@ h1, h2, h3, #menu { color: #0b2b87; }
 #menu a { text-decoration: none; font-size: 18px; }
 #menu a:visited, #menu a:link, #menu a { color: #0b2b87; }
 #menu a:hover, #menu a:active, #menu a:target { color: red; }
+#menu .sub a { font-size: 16px; }
 #main { font-size: 14px; }
 #main dt {  font-weight: bold; }
 #main h1 { font-size: 23px; }
