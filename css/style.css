@@ -157,8 +157,9 @@ body {
           transform:rotate(180deg);
 }
 #main { padding: 0.5em 1em 0.1em 1em; }
+#main { position: relative; }
 /* Menu at top of content area */
-#menu { background: #fa0; paddingx: 0 0.5em; }
+#menu { background: #fa0; }
 #menu .item { margin: 0 0.3em; }
 
 /***** Functional stuff ******/
@@ -186,7 +187,7 @@ h1, h2, h3 { font-family: 'Tangerine', sans-serif; font-weight: bold; }
 #menu .sub a:visited, #menu .sub a:link, #menu .sub a { color: #ddd; }
 #menu .sub a { font-size: 90%; }
 
-#menu .item .selected { color: #600 !important; }
+#menu .item .selected { color: #700 !important; }
 
 /* pop in fast, but fade out slow */
 #menu .item a {
