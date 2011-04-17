@@ -100,6 +100,7 @@ body {
   width: 100%;
   min-width: 920px;
 }
+#top { z-index: -1; /* only needed for IE, sigh */ }
 #img-of-us { float: right; }
 #top .us {
  background: black; text-align: right;
@@ -140,6 +141,12 @@ body {
        -moz-box-shadow: 3px 3px 5px rgba(0,0,0,.3);
             box-shadow: 3px 3px 5px rgba(0,0,0,.3);
 }
+.ie6 #container, .ie7 #container, .ie8 #container {
+    /* Shadow doesn't look good in IE (no alpha blending) */
+    -webkit-box-shadow: none;
+       -moz-box-shadow: none;
+            box-shadow: none;
+}
 #container .ambigram {
   position: absolute; top: 7em; left: 0; height: 407px; width: 100%;
   background-image: url("../images/palmer-ambigram-4.png");
@@ -164,7 +171,8 @@ body {
 
 /***** Functional stuff ******/
 #content > div > div { display: none; }
-#content > div > div:target { display: block; }
+#contentx > div > div:target { display: block; }
+#content > div > div.ie-target { display: block; } /* we love IE */
 /* Display some helpful text if the user doesn't have JS enabled. */
 .no-js #content > div > #noscript { display: block; }
 /* Display 'please wait' text while loading initially. */

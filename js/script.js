@@ -1,4 +1,5 @@
-/* Author: C. Scott Ananian
+/*
+ * Author: C. Scott Ananian
  */
 WebFontConfig = {
     google: {
@@ -34,8 +35,11 @@ WebFontConfig = {
 		if (!tophash) tophash="#willnotmatch";
 		menu.isotope({ filter: ".top, "+tophash });
 		// highlight the proper menu entry
-		$('.item a').removeClass('selected');
+		$('.item a.selected').removeClass('selected');
 		$('.item a[href="'+hash+'"]').addClass('selected');
+		// work around browsers (IE!) that don't implement :target
+		$('.ie-target').removeClass('ie-target');
+		$(hash).addClass('ie-target');
 		// rotate the ambigram (but not on first page load)
 		if (!quiet)
 		    $('.ambigram').toggleClass('upsidedown');
