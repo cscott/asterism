@@ -21,10 +21,13 @@ WebFontConfig = {
 	    // set up isotope
             menu.isotope({
 		itemSelector: '.item',
-		layoutMode : 'fitRows',
+		layoutMode : 'fitRows'
 	    });
 
 	    $('#pleasewait').hide();
+	    // work around ie6 craziness
+	    $('#content > div > div').addClass('ie-hideme');
+
 	    // use https://developer.mozilla.org/en/DOM/window.onhashchange
 	    // to update physics when we switch pages.
 	    var oldsignal = {};

@@ -135,11 +135,13 @@ body {
     -webkit-border-radius: 12px;
        -moz-border-radius: 12px;
             border-radius: 12px;
-    behavior: url("css/ie-css3.htc"); /* MSIE workaround for border-radius */
     /* slight shadow */
     -webkit-box-shadow: 3px 3px 5px rgba(0,0,0,.3);
        -moz-box-shadow: 3px 3px 5px rgba(0,0,0,.3);
             box-shadow: 3px 3px 5px rgba(0,0,0,.3);
+}
+.ie7, .ie8 {
+    behavior: url("css/ie-css3.htc"); /* MSIE workaround for border-radius */
 }
 .ie6 #container, .ie7 #container, .ie8 #container {
     /* Shadow doesn't look good in IE (no alpha blending) */
@@ -147,6 +149,7 @@ body {
        -moz-box-shadow: none;
             box-shadow: none;
 }
+
 #container .ambigram {
   position: absolute; top: 7em; left: 0; height: 407px; width: 100%;
   background-image: url("../images/palmer-ambigram-4.png");
@@ -171,12 +174,15 @@ body {
 
 /***** Functional stuff ******/
 #content > div > div { display: none; }
-#contentx > div > div:target { display: block; }
+#content > div > div:target { display: block; }
 #content > div > div.ie-target { display: block; } /* we love IE */
 /* Display some helpful text if the user doesn't have JS enabled. */
 .no-js #content > div > #noscript { display: block; }
 /* Display 'please wait' text while loading initially. */
 .js #content #pleasewait { display: block; }
+/* work around IE6 craziness */
+.ie6 .ie-hideme { display: none; }
+.ie6 .ie-target { display: block !important; }
 
 /* weirdness to fake out fragment scrolling */
 #menu { z-index: 1; position: relative; }
@@ -199,6 +205,8 @@ h1, h2, h3 { font-family: 'Tangerine', sans-serif; font-weight: bold; }
 
 /* Cabin is nice, too.  So is Puritan, but it looks uneven on Windows. */
 #main { font-family: 'Lato', sans-serif; }
+/* hide dingbats unless the main font manages to load */
+.wf-lato-n4-inactive .dingbats, .ie6 .dingbats { display: none; }
 
 /** Windows seems to render better if we insist on integer font sizes **/
 #container { font-size: 16px; }
