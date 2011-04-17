@@ -121,9 +121,6 @@ body {
  /* border was: 'orange', then #c0230d */
  border: 5px solid #fa0; font-size: 125%;
  background-color: white;
- background-image: url("../images/palmer-ambigram-4.png");
- background-repeat: no-repeat;
- background-position: center 7em;
  margin-top: 2em;
  margin-left: 2em;
  margin-right: 425px;
@@ -141,6 +138,22 @@ body {
     -webkit-box-shadow: 3px 3px 5px rgba(0,0,0,.3);
        -moz-box-shadow: 3px 3px 5px rgba(0,0,0,.3);
             box-shadow: 3px 3px 5px rgba(0,0,0,.3);
+}
+#container .ambigram {
+  position: absolute; top: 7em; left: 0; height: 407px; width: 100%;
+  background-image: url("../images/palmer-ambigram-4.png");
+  background-repeat: no-repeat;
+  background-position: center top;
+  -webkit-transition: all 0.5s ease-in-out;
+     -moz-transition: all 0.5s ease-in-out;
+       -o-transition: all 0.5s ease-in-out;
+          transition: all 0.5s ease-in-out;
+}
+#container .ambigram.upsidedown {
+  -webkit-transform:rotate(180deg);
+     -moz-transform:rotate(180deg);
+       -o-transform:rotate(180deg);
+          transform:rotate(180deg);
 }
 #main { padding: 0.5em 1em 0.1em 1em; }
 /* Menu at top of content area */
@@ -181,9 +194,9 @@ h1, h2, h3 { font-family: 'Tangerine', sans-serif; font-weight: bold; }
     -o-transition: all 0.5s ease-in-out;
 }
 #menu .item a:hover {
-     -webkit-transition: all 0.1s ease-in-out;
-    -moz-transition: all 0.1s ease-in-out;
-    -o-transition: all 0.1s ease-in-out;
+  -webkit-transition-duration: 0s;
+     -moz-transition-duration: 0s;
+          transition-duration: 0s;
 }
 
 .dingbats, #pleasewait { text-align: center; font-size: 125%; }

@@ -14,6 +14,7 @@ WebFontConfig = {
 
 // remap jQuery to $
 (function($){
+    var quiet=true;
     $(document).ready(function(){
             var menu = $('#menu');
 	    // set up isotope
@@ -35,6 +36,9 @@ WebFontConfig = {
 		// highlight the proper menu entry
 		$('.item a').removeClass('selected');
 		$('.item a[href="'+hash+'"]').addClass('selected');
+		// rotate the ambigram (but not on first page load)
+		if (!quiet)
+		    $('.ambigram').toggleClass('upsidedown');
             });
 	    // redirect if no # target
 	    if (window.location.hash=='' ||
@@ -44,9 +48,10 @@ WebFontConfig = {
 	    // Trigger the event (useful on page load).
 		$(window).hashchange();
 
-	    // setup mouse handlers
-	    //var main = $('#main');
-	    //main.mouseenter(function(e) { physics_mouseenter(e); });
+	    setTimeout(function() {
+		// only animate the ambigram after initial delay
+		quiet = false;
+	    }, 2000);
 	});
 })(this.jQuery);
 
