@@ -3,7 +3,7 @@
  */
 WebFontConfig = {
     google: {
-	families: [ 'Tangerine:bold', 'Puritan', 'Crushed' ]
+	families: [ 'Tangerine:bold', 'Lato', 'Crushed' ]
     },
     // relayout after web fonts are loaded.
     active: function() {
