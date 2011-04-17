@@ -177,7 +177,7 @@ body {
 
 /*********** STYLIN' ********/
 h1 { font-size: 250%; }
-h2 { font-size: 175%; }
+h2 { font-size: 200%; }
 h1, h2, h3 { font-family: 'Tangerine', sans-serif; font-weight: bold; }
 #menu .item { font-family: 'Crushed', sans-serif; font-weight: bold;
               font-size: 125%; color: white; }
@@ -188,6 +188,9 @@ h1, h2, h3 { font-family: 'Tangerine', sans-serif; font-weight: bold; }
 #menu .sub a { font-size: 90%; }
 
 #menu .item .selected { color: #700 !important; }
+
+/* Cabin is nice, too.  So is Lato. */
+#main { font-family: 'Puritan', sans-serif; }
 
 /* pop in fast, but fade out slow */
 #menu .item a {
@@ -210,8 +213,8 @@ h1, .dingbats, #pleasewait { color: #004; }
  font-size: 30px;
 }
 #main dt {  font-weight: bold; }
-#main h2 { margin: 0.5em 0; }
-#main p { margin-top: 0.5em; }
+#main h2 { margin-top: 0.7em; margin-bottom: -.2em; }
+#main p { margin: 0.5em 0; }
 /*
 #main { font-size: 14px; }
 #main h1 { font-size: 23px; }

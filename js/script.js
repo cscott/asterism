@@ -2,13 +2,13 @@
  */
 WebFontConfig = {
     google: {
-	families: [ 'Tangerine:bold', 'Crushed' ]
+	families: [ 'Tangerine:bold', 'Puritan', 'Crushed' ]
     },
     // relayout after web fonts are loaded.
     active: function() {
 	setTimeout(function() {
 	    jQuery('#menu').isotope('reLayout');
-	}, 100);
+	}, 250);
     }
 };
 
