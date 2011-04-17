@@ -1,5 +1,16 @@
 /* Author: C. Scott Ananian
  */
+WebFontConfig = {
+    google: {
+	families: [ 'Tangerine:bold', 'Crushed' ]
+    },
+    // relayout after web fonts are loaded.
+    active: function() {
+	setTimeout(function() {
+	    jQuery('#menu').isotope('reLayout');
+	}, 100);
+    }
+};
 
 // remap jQuery to $
 (function($){
@@ -21,6 +32,9 @@
 		var tophash = hash.replace('#','.').replace(/-.*/, '');
 		if (!tophash) tophash="#willnotmatch";
 		menu.isotope({ filter: ".top, "+tophash });
+		// highlight the proper menu entry
+		$('.item a').removeClass('selected');
+		$('.item a[href="'+hash+'"]').addClass('selected');
             });
 	    // redirect if no # target
 	    if (window.location.hash=='' ||
@@ -35,3 +49,14 @@
 	    //main.mouseenter(function(e) { physics_mouseenter(e); });
 	});
 })(this.jQuery);
+
+// load webfont (note that WebFontConfig must be defined first)
+(function() {
+    var wf = document.createElement('script');
+    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+        '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+})();
