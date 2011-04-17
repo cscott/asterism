@@ -251,7 +251,24 @@ h1, .dingbats, #pleasewait { color: #004; }
           transition-property:         transform, opacity;
 }
 
+@media handheld {
+  #right, #top, .ambigram { display: none; }
+  #container { margin: 0.7em; }
+}
 
+@media print {
+  /* simplify for printing */
+  #top, #right, #menu, .ambigram { display: none; }
+  #container {
+    margin: 0;
+    border: none;
+    -webkit-box-shadow: none;
+       -moz-box-shadow: none;
+            box-shadow: none;
+  }
+  body, #container { background: transparent; }
+  h1, h2, h3, .dingbats, #pleasewait { color: black; }
+}
 
 
 
