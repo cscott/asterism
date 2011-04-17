@@ -86,19 +86,83 @@ a:hover { color: #036; }
     \\ ========================================== //
 */
 
+body { position: absolute; top: 0; left: 0; margin: 0; padding: 0; }
+body { background-image: url("../images/yellow-background.jpg"); }
+
+/* top border */
+#top {
+  background: #003;
+  background-image: url("../images/blue-background-2.jpg");
+  position: absolute; top: 0; left: 0;
+  width: 100%;
+  min-width: 920px;
+}
+#img-of-us {  float: right; widthx: 400px; }
+#top .us {
+ background: black; text-align: right;
+ padding-right: 120px;
+}
+
+/* fiddlehead on the right */
+#right {
+  width: 400px; height: 100%;
+  position: absolute; top: 0; right: 0;
+  background-image: url("../images/fiddlehead-3.png");
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+/* Main content area */
+#container {
+ position: relative;
+ /* border was: 'orange', then #c0230d */
+ border: 5px solid #fa0; font-size: 125%;
+ background-color: white;
+ background-image: url("../images/palmer-ambigram-4.png");
+ background-repeat: no-repeat;
+ background-position: center 7em;
+ margin-top: 2em;
+ margin-left: 2em;
+ margin-right: 425px;
+ margin-bottom: 1em;
+ min-width: 500px;
+
+ /* round the borders */
+    -webkit-border-radius: 12px;
+       -moz-border-radius: 12px;
+            border-radius: 12px;
+    behavior: url("css/ie-css3.htc"); /* MSIE workaround for border-radius */
+    /* slight shadow */
+    -webkit-box-shadow: 3px 3px 5px rgba(0,0,0,.3);
+       -moz-box-shadow: 3px 3px 5px rgba(0,0,0,.3);
+            box-shadow: 3px 3px 5px rgba(0,0,0,.3);
+}
+#main { padding: 0.5em 1em 0.1em 1em; }
+/* Menu at top of content area */
+#menu { background: #fa0; paddingx: 0 0.5em; }
+#menu .item { margin: 0 0.3em; }
+
+/* STYLIN' */
+h1 { font-size: 250%; }
+h1, h2, h3 { font-family: 'Tangerine', sans-serif; font-weight: bold; }
+#menu .item { font-family: 'Crushed', sans-serif; font-weight: bold;
+              font-size: 125%; color: white; }
+#menu .item:hover { color: #a00; /* blue is #008 */ }
+.dingbats { text-align: center; font-size: 125%; }
+h1, .dingbats { color: #004; }
+.us {
+ color: #fa0;
+ font-family: 'Tangerine', sans-serif;
+ font-weight: bold;
+ font-size: 30px;
+}
 
 
 
 
 
 
-
-
-
-
-
-
-
+/******************  END USER STYLES ****************/
 
 .ir { display: block; text-indent: -999em; overflow: hidden; background-repeat: no-repeat; text-align: left; direction: ltr; }
 .hidden { display: none; visibility: hidden; }
