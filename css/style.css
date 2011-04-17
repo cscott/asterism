@@ -100,10 +100,11 @@ body {
   width: 100%;
   min-width: 920px;
 }
-#img-of-us {  float: right; }
+#img-of-us { float: right; }
 #top .us {
  background: black; text-align: right;
  padding-right: 120px;
+ clear: both;
 }
 
 /* fiddlehead on the right */
