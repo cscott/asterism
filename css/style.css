@@ -200,6 +200,11 @@ h1, h2, h3 { font-family: 'Tangerine', sans-serif; font-weight: bold; }
 /* Cabin is nice, too.  So is Lato. */
 #main { font-family: 'Puritan', sans-serif; }
 
+/** Windows seems to render better if we insist on integer font sizes **/
+#container { font-size: 16px; }
+#menu .item { font-size: 20px; }
+#menu .sub a { font-size: 18px; }
+
 /* pop in fast, but fade out slow */
 #menu .item a {
      -webkit-transition: all 0.5s ease-in-out;
@@ -223,11 +228,6 @@ h1, .dingbats, #pleasewait { color: #004; }
 #main dt {  font-weight: bold; }
 #main h2 { margin-top: 0.7em; margin-bottom: -.2em; }
 #main p { margin: 0.5em 0; }
-/*
-#main { font-size: 14px; }
-#main h1 { font-size: 23px; }
-#main h2 { font-size: 20px; }
-*/
 
 /* Isotope animation using CSS transitions */
 .isotope,
