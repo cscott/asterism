@@ -166,15 +166,25 @@ h2 { font-size: 175%; }
 h1, h2, h3 { font-family: 'Tangerine', sans-serif; font-weight: bold; }
 #menu .item { font-family: 'Crushed', sans-serif; font-weight: bold;
               font-size: 125%; color: white; }
-#menu .item:hover { color: #a00; /* blue is #008 */ }
-
 #menu a { text-decoration: none; }
 #menu a:visited, #menu a:link, #menu a { color: white; }
-#menu a:hover, #menu a:active, #menu a:target { color: #a00; }
-#menu .sub a { font-size: 90%; }
+#menu a:hover, #menu a:active, #menu a:target { color: #a00 !important; }
 #menu .sub a:visited, #menu .sub a:link, #menu .sub a { color: #ddd; }
+#menu .sub a { font-size: 90%; }
 
 #menu .item .selected { color: #600 !important; }
+
+/* pop in fast, but fade out slow */
+#menu .item a {
+     -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+}
+#menu .item a:hover {
+     -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+}
 
 .dingbats, #pleasewait { text-align: center; font-size: 125%; }
 h1, .dingbats, #pleasewait { color: #004; }
