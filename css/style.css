@@ -195,6 +195,7 @@ body {
 /*********** STYLIN' ********/
 h1 { font-size: 250%; }
 h2 { font-size: 200%; }
+b { font-weight: bold; }
 h1, h2, h3 { font-family: 'Tangerine', sans-serif; font-weight: bold; }
 #menu .item { font-family: 'Crushed', sans-serif; font-weight: bold;
               font-size: 125%; color: white; }
