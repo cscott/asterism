@@ -189,7 +189,7 @@ body {
 
 /* weirdness to fake out fragment scrolling */
 #menu { z-index: 1; position: relative; }
-#content > div > div { margin-top: -100px; padding-top: 100px; }
+#content > div > div { margin-top: -2000px; padding-top: 2000px; }
 
 
 /*********** STYLIN' ********/
