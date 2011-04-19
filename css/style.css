@@ -183,6 +183,9 @@ body {
 /* work around IE6 craziness */
 .ie6 .ie-hideme { display: none; }
 .ie6 .ie-target { display: block !important; }
+/* speculative: same problem on IE7? */
+.ie7 .ie-hideme { display: none; }
+.ie7 .ie-target { display: block !important; }
 
 /* weirdness to fake out fragment scrolling */
 #menu { z-index: 1; position: relative; }
