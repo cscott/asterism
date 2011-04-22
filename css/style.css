@@ -152,7 +152,7 @@ body {
 
 #container .ambigram {
   position: absolute; top: 7em; left: 0; height: 407px; width: 100%;
-  background-image: url("../images/palmer-ambigram-4.png");
+  background-image: url("../images/palmer-ambigram-4b.png");
   background-repeat: no-repeat;
   background-position: center top;
   -webkit-transition: all 0.5s ease-in-out;
