@@ -241,6 +241,8 @@ h1, .dingbats, #pleasewait { color: #004; }
 #main dt {  font-weight: bold; }
 #main h2 { margin-top: 0.7em; margin-bottom: -.2em; }
 #main p { margin: 0.5em 0; }
+#main dd { padding-left: 1em; }
+.quote { padding-left: 2em; }
 
 /* Isotope animation using CSS transitions */
 .isotope,
